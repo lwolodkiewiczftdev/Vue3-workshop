@@ -396,6 +396,11 @@ export default defineComponent({
 
 ---
 
+# Ekran wydzwaniania połaczenia
+<img style="width: 690px; margin-left: 100px;" src="/ringing.png" />
+
+---
+
 # Co dalej?
 
 - Pobieranie statusu oraz zmiana widoków (pooling/socket.io)
