@@ -24,7 +24,7 @@ clicks: 1
 
 Volar
 
-<img border="rounded"  src="volar.png">
+<img border="rounded"  src="/volar.png">
 
 ---
 layout: section
@@ -45,7 +45,7 @@ Tworzymy defaulotwy projekt
 vue create front
 ```
 
-<img border="rounded" height=500 width=800 src="vue-create.png">
+<img border="rounded" height=500 width=800 src="/vue-create.png">
 
 ---
 
@@ -87,7 +87,7 @@ npm run serve
 
 # Struktura katalogów
 
-<img border="rounded" height=500 width=400 src="structure.png">
+<img border="rounded" height=500 width=400 src="/structure.png">
 
 ---
 layout: sfc
@@ -267,7 +267,7 @@ Dostępne w plikach na teams lub pod przyciskiem poniżej
 
 # Widok start
 
-<img src="start.png" />
+<img src="/start.png" />
 
 ---
 
@@ -311,7 +311,7 @@ layout: section
 ---
 
 # Podaj numer i wykonaj połączenie
-<img src="start2.png" />
+<img src="/start2.png" />
 
 ---
 
