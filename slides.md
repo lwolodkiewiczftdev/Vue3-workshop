@@ -1,396 +1,416 @@
 ---
-# try also 'default' to start simple
-theme: vuetiful
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://source.unsplash.com/collection/94734566/1920x1080
-# apply any windi css classes to the current slide
-class: 'text-center'
-# https://sli.dev/custom/highlighters.html
+theme: ./theme
+class: text-center
 highlighter: shiki
-# show line numbers in code blocks
 lineNumbers: true
-# some information about the slides, markdown enabled
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
 
   Learn more at [Sli.dev](https://sli.dev)
-# persist drawings in exports and build
 drawings:
   persist: false
+title: Warsztat#3 - Vue.js
 layout: cover
-cover: alt # to enable alternative cover
+altCover: cover-alt
 clicks: 1
 ---
 
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-    class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+# Vue.js
 
 ---
 
+# Przydatne rozszerzenia do Visual Studio Code
 
-# What is Slidev?
+Volar
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+<img border="rounded"  src="volar.png">
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
+---
+layout: section
+title: Instalacja
+---
+# Instalacja i uruchomienie aplikacji 
 
 ---
 
-# Navigation
+# Pierwsze uruchomienie aplikacji
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-### Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
----
-
-# Code
-
-Use code snippets and get the highlighting directly![^1]
-
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
-
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = {...user, ...update}  
-  saveUser(id, newUser)
-}
+Instalujemy vue-cli
+```bash
+npm install -g @vue/cli
+```
+Tworzymy defaulotwy projekt
+```bash
+vue create front
 ```
 
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<style>
-.footnotes-sep {
-  @apply mt-20 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
+<img border="rounded" height=500 width=800 src="vue-create.png">
 
 ---
 
-# Components
+# Pierwsze uruchomienie aplikacji - 2
+
+Jeśli mamy problem z uprawnieniami (windows)
+```bash
+vue.cmd create front
+```
+
+Przechodzimy do katalogu
+```bash
+cd front
+```
+
+---
+
+# Pierwsze uruchomienie aplikacji - 3
+
+Edytujemy vue.config.js
+```vue {all|5-8|all}
+const { defineConfig } = require('@vue/cli-service');
+
+module.exports = defineConfig({
+  transpileDependencies: true,
+  devServer: {
+    historyApiFallback: true,
+    allowedHosts: "all",
+  },
+});
+```
+
+Uruchamiamy aplikacje w trybie developerskim
+
+```bash
+npm run serve
+```
+---
+
+# Struktura katalogów
+
+<img border="rounded" height=500 width=400 src="structure.png">
+
+---
+layout: sfc
+example: Multiple
+---
+
+# Data binding & event-emiting
+
+---
+
+# Dodajemy routing do aplikacji
+
+```shell 
+vue add router
+```
+
+---
+title: Home i About
+---
 
 <div grid="~ cols-2 gap-4">
 <div>
 
-You can use Vue components directly inside your slides.
+Sprawdźmy jak wyglądają nasze dwa widoki
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+HomeView.vue
 
-```html
-<Counter :count="10" />
+```vue {all|1-6|8-19|10,14-16|all}
+<template>
+    <div class="home">
+      <img alt="Vue logo" src="../assets/logo.png" />
+      <HelloWorld msg="Welcome to Your Vue.js App" />
+    </div>
+</template>
+
+<script lang="ts">
+  // @ is an alias to /src
+  import HelloWorld from '@/components/HelloWorld.vue'
+
+  export default {
+    name: 'Home',
+    components: {
+      HelloWorld,
+    },
+  }
+</script>
 ```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
 </div>
 <div>
 
-```html
-<Tweet id="1390115482657726468" />
-```
+<p> </p>
 
-<Tweet id="1390115482657726468" scale="0.65" />
+AboutView.vue
 
-</div>
-</div>
-
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="-t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
+```vue
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
   </div>
+</template>
+```
 
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
+</div>
 </div>
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
+---
+title: Router.ts
+---
+
+```ts {all|5-8,9-18|8|16,17|all}
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Home from '../views/Home.vue'
+
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+  },
+  {
+    path: '/about',
+    name: 'About',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+  },
+]
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+})
+
+export default router
+```
+
+<style scoped>
+.shiki-container {
+  margin-top: -15px;
 }
+</style>
+
+---
+
+# Tworzymy widok startView
+
+```vue
+<template>
+  <p>start</p>
+</template>
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  data: () => ({
+    number: '',
+  }),
+  methods: {
+    async call() {
+      await fetch('http://3000-<adres naszego workspace>/call', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ number: this.number }),
+      })
+    },
+  },
+})
 </script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
+```
 ---
 
-# LaTeX
+# Dodajemy nową ścieżkę do routingu
+src/router/index.ts
+```ts
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Start from '../views/StartView.vue'
 
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'start',
+    component: Start,
+  },
+]
 
-<br>
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+})
 
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
-
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
+export default router
 ```
 
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
+---
+
+# Edytujemy App.vue
+src/views/App.vue
+```vue
+<template>
+  <div class="window">
+    <router-view />
+  </div>
+</template>
+
+<style>
+/* Tu wklej style
+Dostępne w plikach na teams lub pod przyciskiem poniżej
+*/
+</style>
 ```
 
-```plantuml {scale: 0.7}
-@startuml
+<copyStyles>Klik</CopyStyles>
 
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
+---
 
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
+# Widok start
 
-cloud {
-  [Example 1]
-}
+<img src="start.png" />
+
+---
 
 
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
+# Dodajemy template do StartView.vue
+src/views/StartView.vue
 
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
+```vue
+<template>
+  <div>
+    <div class="header clearfix">Zadzwonimy do Ciebie w ciągu 26 sekund.</div>
+    <label class="form-label clearfix" for="form-number">
+      Wprowadź numer
+    </label>
+    <input v-model="number" class="form-number clearfix" id="form-number" />
+    <div class="call-button" @click="call()">Zadzwoń teraz</div>
+  </div>
+</template>
 ```
 
-</div>
+---
 
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
+# Ustawiamy numer na backendzie
+
+``` js
+app.post('/call/', (req, res) => {
+   const body = req.body;
+   const number1 = body.number;
+   const number2 = '<twój numer>';
+   bridge = Dialer.call(number1, number2);
+   res.json({ success: true });
+  })
+```
+
+---
+layout: section
+---
+
+# Sprawdźmy działanie!
+
+---
+
+# Podaj numer i wykonaj połączenie
+<img src="start2.png" />
+
+---
+
+
+# Znane problemy
+
+- Nie uruchomiony backend - node app.js w katalogu z backendem 
+- Nie podane dane autoryzacyjne w app.js na backendzie
+- Serwer odpalony na innym porcie
+- W logach backendu mam Ringing-Connected-Answered a telefon nie dzwoni - backend działa w trybie mock
+- Błąd że cannot find id - numeru nie ma w naszej bazie - zgłoś problem prowadzącemu
+- Miałeś inny problem? Daj znać i dopiszemy go do listy!
+
+---
+
+# Tworzymy nowy widok RingingView
+src/views/RingingView.vue
+
+```vue
+<template>
+  <div class="box">
+    <div class="text">Zaraz nastąpi połączenie z konsultantem.</div>
+  </div>
+</template>
+```
+
+---
+
+# Dodajemy nową ścieżkę do routingu
+src/router/index.ts
+```ts
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Start from '../views/StartView.vue'
+import Ringing from '../views/RingingView.vue'
+
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'start',
+    component: Start,
+  },
+  {
+    path: '/',
+    name: 'ringing',
+    component: Ringing,
+  },
+]
+
+const router = createRouter({...})
+
+export default router
+```
+
+---
+
+# Rozszerzamy widok Start
+src/views/Start.vue
+
+```vue {all|10,17-18|all}
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  data: () => ({
+    number: '',
+  }),
+  methods: {
+    async call() {
+      const responseStream = await fetch('https://localhost:3000/call', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({ number: this.number }),
+      })
+      const response = await responseStream.json()
+      this.$router.push({ name: 'ringing', params: { callsId: response.id } })
+    },
+  },
+})
+</script>
+```
 
 
 ---
-layout: center
-class: text-center
----
 
-# Learn More
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+# Co dalej?
 
+- Pobieranie statusu oraz zmiana widoków (pooling/socket.io)
+- Obsługa błędów - niepowodzenie w trakcie nawiązywania połączenia
 
 
 ---
-layout: sfc
-example: Test 
----
 
-# This will be the slide's title
+# Sprawdź też
+
+
+- https://education.github.com/pack
+- https://frontendmasters.com/learn/vue/
+- https://www.vuemastery.com/courses
+- https://router.vuejs.org/

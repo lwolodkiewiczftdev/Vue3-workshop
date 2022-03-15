@@ -1,5 +1,5 @@
 <template>
-  <h1>Hello World"</h1>
+  <h1>Hello World</h1>
   <button @click="show = !show">Toggle Message</button>
   <div v-if="show" class="message">{{ message }}</div>
 </template>
