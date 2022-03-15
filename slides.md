@@ -293,11 +293,11 @@ src/views/StartView.vue
 # Ustawiamy numer na backendzie
 
 ``` js
-app.post('/call/', (req, res) => {
+app.post('/call/', async (req, res) => {
    const body = req.body;
    const number1 = body.number;
    const number2 = '<twój numer>';
-   bridge = Dialer.call(number1, number2);
+   bridge = await Dialer.call(number1, number2);
    res.json({ success: true });
   })
 ```
@@ -368,7 +368,6 @@ export default router
 ---
 
 # Rozszerzamy widok Start
-src/views/Start.vue
 
 ```vue {all|10,17-18|all}
 <script lang="ts">
@@ -395,9 +394,7 @@ export default defineComponent({
 </script>
 ```
 
-
 ---
-
 
 # Co dalej?
 
