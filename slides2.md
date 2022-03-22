@@ -14,6 +14,7 @@ title: Warsztat#3 - Vue.js
 layout: cover
 altCover: cover-alt
 clicks: 1
+download: true
 ---
 
 # Vue.js
