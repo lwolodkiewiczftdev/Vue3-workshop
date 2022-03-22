@@ -117,9 +117,9 @@ title: Dodajemy brakujące metody
   </div>
 </template>
 
-W katalogu views tworzymy plik FailedView.vue
-src/views/FailedView.Vue
-../services/ViewManager'
+<script lang="ts">
+import { defineComponent } from 'vue'
+import ViewManager from '../services/ViewManager'
 
 export default defineComponent({
   name: 'RingingView',
