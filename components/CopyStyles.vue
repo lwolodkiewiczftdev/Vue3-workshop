@@ -2,90 +2,47 @@
 
 const styles = 
 `
-.window {
-  width: 800px;
-  height: 500px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  background: rgb(255, 204, 0);
-  border-radius: 20px;
-  box-sizing: border-box;
-  padding: 20px;
-  text-align: center;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-}
-.clearfix:after {
-  content: "";
-  clear: both;
-  display: table;
-}
-.close {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.15em;
-}
-.box {
-  text-align: center;
-}
-.text {
-  font-size: 40px;
-  font-weight: bold;
-  margin-top: 30px;
-}
-.header,
-.form-number {
-  margin-bottom: 50px;
-}
-.header {
-  margin-top: 50px;
-  font-size: 38px;
-  font-weight: 600;
-}
-.form-label {
-  font-size: 32px;
-  font-weight: 600;
-}
-.form-number {
-  width: 400px;
-  height: 55px;
-  padding: 20px;
-  box-sizing: border-box;
-  font-size: 28px;
-  letter-spacing: 2px;
-  text-align: center;
-}
-.call-button,
-.call-button-bottom {
-  width: 300px;
-  height: 75px;
-  vertical-align: middle;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 75px;
-  background: #008000;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 20px;
-  margin: 0 auto;
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+        worker_connections 768;
 }
 
-.call-button-bottom {
-  margin-top: 300px;
-}
-.call-button:hover {
-  filter: brightness(80%);
-}
-.error {
-  border: 1px solid #ff0000;
-  background: rgb(255, 170, 170);
+http {
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 65;
+        types_hash_max_size 2048;
+        server_tokens off;
+
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
+        gzip on;
+    	server {
+        listen 80;
+            root /var/www/webapp/front/dist;
+            index index.html;
+
+        location /api {
+                proxy_pass http://localhost:3000;
+        }
+        location /api/socket {
+				proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                proxy_set_header X-Frame-Options SAMEORIGIN;
+                proxy_pass http://localhost:3000;
+        }
+	}
 }
 `
 
@@ -94,7 +51,7 @@ const getStyles = () => {navigator.clipboard.writeText(styles)}
 </script>
 
 <template>
-  <div flex="~" w="min" border="~ gray-400 opacity-50 rounded-md">
+  <div flex="~" w="max" border="~ gray-400 opacity-50 rounded-md">
     <button
       border="opacity-50"
       p="2"
