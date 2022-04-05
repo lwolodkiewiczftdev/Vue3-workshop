@@ -288,12 +288,15 @@ Uruchomienie backendu przy pomocy ansible:
 Kroki:
 - instalacja globalnie pm2
 - npm ci w /var/www/webapp
+- uzupełnienie config.js (analogicznie jak nginx lub template)
 - pm2 start index.js 
 
 ---
 
 # Projekt zaliczeniowy 
-aplikacja umożliwiającą zestawienie połączenia telefonicznego (front, backend, ansible)
+Aplikacja umożliwiającą zestawienie połączenia telefonicznego (front, backend, ansible)
+
+## Termin: 15.05
 
 Kryteria oceny:
  - 3 - front + backend + instrukcja uruchomienia w readme
