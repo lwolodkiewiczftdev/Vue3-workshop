@@ -3,7 +3,7 @@
 
 [build]
   publish = "dist"
-  command = "npm run build -f slides3.md"
+  command = "npm run build -f slides4.md"
 
 [[redirects]]
   from = "/*"
